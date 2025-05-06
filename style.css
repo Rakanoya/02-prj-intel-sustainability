@@ -161,3 +161,30 @@ body > p {
     height: auto; /* Allow image height to adjust */
   }
 }
+
+.timeline-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 20px;
+}
+
+.timeline {
+  display: flex;
+  gap: 20px;
+  scroll-padding: 20px;
+}
+
+.card {
+  scroll-snap-align: center;
+  flex: 0 0 300px;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
