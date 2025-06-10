@@ -170,29 +170,62 @@ body > p {
   }
 }
 
-.timeline-container {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 20px;
+/*
+  Responsive Timeline Cards for Beginners
+  - Large screens: keep horizontal scroll (no change)
+  - Medium screens: 2 cards per row, centered
+  - Small screens: 1 card per row, full width, centered
+  - Comments included for learning
+*/
+
+/* Medium screens: 2 cards per row */
+@media (max-width: 960px) and (min-width: 601px) {
+  .timeline {
+    flex-wrap: wrap; /* Allow cards to wrap to next line */
+    justify-content: center; /* Center the cards */
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .card {
+    flex: 0 0 calc(50% - 20px); /* 2 cards per row */
+    max-width: 340px;
+    margin-bottom: 20px;
+  }
 }
 
-.timeline {
-  display: flex;
-  gap: 20px;
-  scroll-padding: 20px;
+/* Small screens: 1 card per row */
+@media (max-width: 600px) {
+  .timeline {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center;    /* Center cards horizontally */
+    gap: 16px;
+    max-width: 100%;
+  }
+  .card {
+    flex: 0 0 95%; /* Almost full width */
+    max-width: 95vw;
+    margin-bottom: 16px;
+  }
+  .card img {
+    height: auto; /* Let images resize naturally */
+  }
 }
 
-.card {
-  scroll-snap-align: center;
-  flex: 0 0 300px;
+/*
+  Show only 3 cards at a time on large screens (with horizontal scroll)
+  - Each card is 300px wide, timeline max-width is 940px (3*300px + 2*20px gap)
+  - This keeps 3 cards visible, with a little space for scroll hint
+*/
+@media (min-width: 961px) {
+  .timeline {
+    max-width: 940px; /* 3 cards (300px) + 2 gaps (20px) = 940px */
+    margin: 0 auto;
+  }
+  .card {
+    flex: 0 0 300px; /* Each card is 300px wide */
+    max-width: 300px;
+  }
 }
 
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
+/* The above ensures only 3 cards are visible at a time on large screens. */
